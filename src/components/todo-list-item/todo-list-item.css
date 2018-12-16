@@ -1,0 +1,15 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.list-item span {
+  flex-grow: 1;
+}
+
+.list-item span.done {
+  text-decoration: line-through;
+}
