@@ -1,6 +1,6 @@
 import { initialToDoState, initialToDoListState } from "./todo.data";
 import * as fromToDoActions from "./todo.actions";
-import combineReducers from "../../store/combineReducers";
+import combineReducers from "../../../src/combineReducers";
 
 function todoListReducer(state = initialToDoListState, action) {
   switch (action.type) {

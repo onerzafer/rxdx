@@ -1,7 +1,7 @@
 import React from 'react';
+import { connect } from '../../src/connect';
 import { ToDoHeader } from "../components/todo-header/todo-header";
 import { Store } from '../stores/store';
-import { connect } from '../store/connect';
 import { ToDoItem } from '../components/todo-list-item/todo-list-item';
 import { filteredTodoListSelector } from '../stores/todo/todo.selectors';
 

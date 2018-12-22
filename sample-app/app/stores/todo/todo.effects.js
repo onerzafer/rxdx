@@ -1,7 +1,7 @@
 import * as fromToDoActions from "./todo.actions";
 import { mergeMap } from "rxjs/operators";
 import { todoService } from "./todo.service";
-import { actions$, ofType, Effect } from "../../store/effectsMiddleware";
+import { actions$, ofType, Effect } from "../../../src/effectsMiddleware";
 
 class ToDoEffects {
   constructor(_toDoService, _actions$) {

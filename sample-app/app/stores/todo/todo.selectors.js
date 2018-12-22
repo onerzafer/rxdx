@@ -1,4 +1,4 @@
-import { createSelector } from "../../store/selectors";
+import { createSelector } from "../../../src/selectors";
 
 const combinedStateSelector = state => state.todos;
 export const todoListStateSelector = createSelector(

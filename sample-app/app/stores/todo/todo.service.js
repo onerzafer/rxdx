@@ -1,12 +1,11 @@
 import { of } from "rxjs";
-import { map, delay } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import * as fromToDoActions from "./todo.actions";
 import { readLocal, writeLocal } from "../../utils/local-storage-manager";
 
 class ToDoService {
   getToDos() {
     return of(readLocal("todo_db", []))
-      .pipe(delay(1000))
       .pipe(map(todos => fromToDoActions.getToDosOkAction(todos)));
   }
 
@@ -21,7 +20,6 @@ class ToDoService {
     writeLocal("todo_db", todos);
 
     return of(todoItem)
-      .pipe(delay(1000))
       .pipe(map(todo => fromToDoActions.addToDoOkAction(todoItem)));
   }
 
@@ -37,7 +35,6 @@ class ToDoService {
     writeLocal("todo_db", todos);
 
     return of(todos[todoItemIndex])
-      .pipe(delay(1000))
       .pipe(map(todoUpdated => fromToDoActions.updateToDoOkAction(todoUpdated)));
   }
 }
