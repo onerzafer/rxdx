@@ -1,6 +1,6 @@
 {
   "name": "rxdx",
-  "version": "0.0.2-alpha",
+  "version": "0.0.3-alpha",
   "license": "MIT",
   "author": "Öner Zafer <onerizafer@gmail.com> (https://github.com/onerzafer)",
   "homepage": "https://github.com/onerzafer/rxdx",
@@ -10,10 +10,7 @@
   "unpkg": "dist/rxjs.js",
   "module": "es/rxjs.js",
   "files": [
-    "dist",
-    "lib",
-    "src",
-    "es"
+    "lib"
   ],
   "peerDependencies": {
     "rxjs": "^6.3.3",
