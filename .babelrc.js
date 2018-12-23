@@ -1,24 +1,26 @@
-const { NODE_ENV } = process.env
-
 module.exports = {
   presets: [
     [
-      '@babel/env',
+      "@babel/env",
       {
         targets: {
-          browsers: ['ie >= 11']
+          browsers: ["ie >= 11"]
         },
-        exclude: ['transform-async-to-generator', 'transform-regenerator'],
+        exclude: ["transform-async-to-generator", "transform-regenerator"],
         modules: false,
         loose: true
       }
     ]
   ],
   plugins: [
-    '@babel/plugin-proposal-class-properties',
-    ['@babel/proposal-decorators', { legacy: true }],
-    '@babel/transform-react-jsx',
-    '@babel/proposal-object-rest-spread',
-    NODE_ENV === 'test' && '@babel/transform-modules-commonjs'
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        throwIfNamespace: false // defaults to true
+      }
+    ],
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/proposal-decorators", { legacy: true }],
+    "@babel/proposal-object-rest-spread"
   ].filter(Boolean)
-}
+};

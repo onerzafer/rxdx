@@ -1,14 +1,16 @@
+import React from "react";
+
 const connect = propsToSubscribe => WrappedComponent => {
-  return class ConnectedComponent extends Component {
+  return class ConnectedComponent extends React.Component {
     constructor(...args) {
-        super(...args);
-        this.subscriptions = {};
-        this.state = Object.keys(propsToSubscribe).reduce((cum, curr) => {
-            return {
-                ...cum,
-                [curr]: undefined
-            };
-        }, {});
+      super(...args);
+      this.subscriptions = {};
+      this.state = Object.keys(propsToSubscribe).reduce((cum, curr) => {
+        return {
+          ...cum,
+          [curr]: undefined
+        };
+      }, {});
     }
 
     proc(wrappedComponentInstance) {
@@ -16,21 +18,21 @@ const connect = propsToSubscribe => WrappedComponent => {
     }
 
     componentDidMount() {
-        // subscribe
-        this.subscriptions = Object.keys(propsToSubscribe).reduce((cum, curr) => {
-            return {
-                ...cum,
-                [curr]: propsToSubscribe[curr].subscribe(result => {
-                    this.setState({[curr]: result});
-                })
-            };
-        }, {});
+      // subscribe
+      this.subscriptions = Object.keys(propsToSubscribe).reduce((cum, curr) => {
+        return {
+          ...cum,
+          [curr]: propsToSubscribe[curr].subscribe(result => {
+            this.setState({ [curr]: result });
+          })
+        };
+      }, {});
     }
 
     componentWillUnmount() {
       // unsubscribe
       Object.keys(this.subscriptions).forEach(key => {
-          this.subscriptions[key].unsubscribe();
+        this.subscriptions[key].unsubscribe();
       });
     }
     render() {
@@ -41,10 +43,10 @@ const connect = propsToSubscribe => WrappedComponent => {
         },
         ...this.state
       };
-      if(typeof WrappedComponent !== 'function') {
-          overriddenProps.ref = this.proc.bind(this);
+      if (typeof WrappedComponent !== "function") {
+        overriddenProps.ref = this.proc.bind(this);
       }
-      return WrappedComponent(...overriddenProps);
+      return React.createElement(WrappedComponent, {...overriddenProps}, null);
     }
   };
 };

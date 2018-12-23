@@ -16,7 +16,7 @@ export default [
     ],
     plugins: [babel()]
   },
-
+/*
   // ES
   {
     input: 'src/index.js',
@@ -100,5 +100,5 @@ export default [
         }
       })
     ]
-  }
+  }*/
 ]
