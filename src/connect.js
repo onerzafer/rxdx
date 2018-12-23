@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-export const connect = propsToSubscribe => WrappedComponent => {
+const connect = propsToSubscribe => WrappedComponent => {
   return class ConnectedComponent extends Component {
-    subscriptions;
     constructor(...args) {
         super(...args);
+        this.subscriptions = {};
         this.state = Object.keys(propsToSubscribe).reduce((cum, curr) => {
             return {
                 ...cum,
@@ -45,7 +44,9 @@ export const connect = propsToSubscribe => WrappedComponent => {
       if(typeof WrappedComponent !== 'function') {
           overriddenProps.ref = this.proc.bind(this);
       }
-      return <WrappedComponent {...overriddenProps} />;
+      return WrappedComponent(...overriddenProps);
     }
   };
 };
+
+export default connect;

@@ -15,7 +15,7 @@ function isObjectEqual(a, b) {
   return true;
 }
 
-export const createSelector = (...args) => {
+const createSelector = (...args) => {
   let prevState = undefined;
   let prevResult = undefined;
   const projector = args[args.length - 1];
@@ -31,3 +31,5 @@ export const createSelector = (...args) => {
     return prevResult;
   };
 };
+
+export default createSelector;

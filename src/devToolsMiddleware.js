@@ -1,4 +1,4 @@
-export const devToolsMiddleware = config => {
+const devToolsMiddleware = config => {
   const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect(config);
   return storeGetter => {
     const store = storeGetter();
@@ -26,3 +26,5 @@ export const devToolsMiddleware = config => {
     };
   };
 };
+
+export default devToolsMiddleware;
