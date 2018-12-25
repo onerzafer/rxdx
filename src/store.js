@@ -1,14 +1,20 @@
 import { BehaviorSubject } from "rxjs";
 import { pluck, map } from "rxjs/operators";
 
-function Store(reducer, initialState) {
-  const state = new BehaviorSubject(initialState);
+class Store{
+  state = new BehaviorSubject({});
+  reducer;
 
-  function dispatch(action) {
-    this.state.next(reducer(this.getState(), action));
+  constructor(reducer, initialState) {
+    this.state.next(initialState);
+    this.reducer = reducer;
   }
 
-  function select(...selectors) {
+  dispatch(action) {
+    this.state.next(this.reducer(this.getState(), action));
+  }
+
+  select(...selectors) {
     if(selectors && selectors.length === 1 && typeof selectors[0] === 'function') {
       return this.state.pipe(map(selectors[0]))
     } else {
@@ -16,21 +22,12 @@ function Store(reducer, initialState) {
     }
   }
 
-  function getState() {
+  getState() {
     return this.state.value;
   }
 
-  function subscribe() {
+  subscribe() {
     return this.state.subscribe;
-  }
-
-  return {
-    state,
-    select,
-    dispatch,
-    subscribe,
-    getState,
-    $$observable: state
   }
 }
 
