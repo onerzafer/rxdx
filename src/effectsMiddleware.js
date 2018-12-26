@@ -8,10 +8,10 @@ export function ofType(...types) {
 export const actions$ = new Subject();
 
 export const effectsMiddleware = (...effects) => {
-  return storeGetter => {
+  return store => {
     return next => {
       merge(...getActionsFromEffects(effects)).subscribe(action => {
-        storeGetter().dispatch(action);
+        store.dispatch(action);
       });
       return action => {
         const result = next(action);

@@ -1,7 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import { pluck, map } from "rxjs/operators";
 
-class Store{
+class Store {
   state = new BehaviorSubject({});
   reducer;
 

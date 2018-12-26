@@ -1,7 +1,6 @@
 const devToolsMiddleware = config => {
   const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect(config);
-  return storeGetter => {
-    const store = storeGetter();
+  return store => {
     devTools.subscribe(message => {
       switch (message.type) {
         case "ACTION": {
