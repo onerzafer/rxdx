@@ -5,12 +5,14 @@ const connect = propsToSubscribe => WrappedComponent => {
     constructor(...args) {
       super(...args);
       this.subscriptions = {};
+      // load initial state
       this.state = Object.keys(propsToSubscribe).reduce((cum, curr) => {
         return {
           ...cum,
           [curr]: undefined
         };
       }, {});
+
     }
 
     proc(wrappedComponentInstance) {
@@ -35,6 +37,7 @@ const connect = propsToSubscribe => WrappedComponent => {
         this.subscriptions[key].unsubscribe();
       });
     }
+
     render() {
       const overriddenProps = {
         ...this.props,
@@ -46,6 +49,7 @@ const connect = propsToSubscribe => WrappedComponent => {
       if (typeof WrappedComponent !== "function") {
         overriddenProps.ref = this.proc.bind(this);
       }
+
       return React.createElement(WrappedComponent, {...overriddenProps}, null);
     }
   };
