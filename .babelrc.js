@@ -1,17 +1,17 @@
-module.exports = {
-  presets: [
-    [
-      "@babel/env",
-      {
-        targets: {
-          browsers: ["ie >= 11"]
-        },
-        exclude: ["transform-async-to-generator", "transform-regenerator"],
-        modules: false,
-        loose: true
+module.exports ={
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": false,
+      "targets": {
+        "browsers": "ie >= 11"
       }
-    ]
+    }]
   ],
+  "env": {
+    "test": {
+      "presets": [["@babel/preset-env"]]
+    },
+  },
   plugins: [
     [
       "@babel/plugin-transform-react-jsx",

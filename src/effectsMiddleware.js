@@ -14,9 +14,8 @@ export const effectsMiddleware = (...effects) => {
         store.dispatch(action);
       });
       return action => {
-        const result = next(action);
+        next(action);
         actions$.next(action);
-        return result;
       };
     };
   };

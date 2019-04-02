@@ -19,9 +19,8 @@ const devToolsMiddleware = config => {
       }
     });
     return next => action => {
-      const result = next(action);
+      next(action);
       devTools.send(action, store.getState());
-      return result;
     };
   };
 };

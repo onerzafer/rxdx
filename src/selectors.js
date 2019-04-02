@@ -15,6 +15,8 @@ function isObjectEqual(a, b) {
   return true;
 }
 
+/**
+*/
 const createSelector = (...args) => {
   let prevState = undefined;
   let prevResult = undefined;
